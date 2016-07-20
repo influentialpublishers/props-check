@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/influentialpublishers/props-check/issues"
   },
-  "homepage": "https://github.com/influentialpublishers/props-check#readme"
+  "homepage": "https://github.com/influentialpublishers/props-check#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.11",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4"
+  },
+  "dependencies": {
+    "leven": "^2.0.0"
+  }
 }
