@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/influentialpublishers/props-check.svg?branch=master)](https://travis-ci.org/influentialpublishers/props-check)
+[![codecov](https://codecov.io/gh/influentialpublishers/props-check/branch/master/graph/badge.svg)](https://codecov.io/gh/influentialpublishers/props-check)
 [![Coverage Status](https://coveralls.io/repos/github/influentialpublishers/props-check/badge.svg?branch=master)](https://coveralls.io/github/influentialpublishers/props-check?branch=master)
 
 # props-check
