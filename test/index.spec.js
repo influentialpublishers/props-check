@@ -34,7 +34,7 @@ describe('prop-check/index.js', () => {
 
     expect(actual.raed).to.deep.eql([ 'read' ]);
     expect(actual.santize).to.deep.eql([ 'sanitize' ]);
-    expect(actual.alvidate).to.deep.eql([ 'alvidate' ]);
+    expect(actual.alvidate).to.deep.eql([ 'validate' ]);
     expect(actual.normalize).to.deep.eql([]);
 
   });
