@@ -1,7 +1,7 @@
 /*eslint-env node, mocha*/
-const expect    = require('chai').expect;
-const Suggest = require('../../lib/suggest');
-const DL = require('../../lib/damerau-levenshtein');
+const expect  = require('chai').expect;
+const suggest = require('../../lib/suggest');
+const DL      = require('../../lib/damerau-levenshtein');
 
 
 describe('props-check/lib/suggest.js', () => {
@@ -9,8 +9,8 @@ describe('props-check/lib/suggest.js', () => {
 
   it('should be a function with an arity of 3', () => {
 
-    expect(Suggest).to.be.a('function');
-    expect(Suggest.length).to.eql(3);
+    expect(suggest).to.be.a('function');
+    expect(suggest.length).to.eql(3);
 
   });
 
@@ -27,7 +27,7 @@ describe('props-check/lib/suggest.js', () => {
 
     test_cases.map((test_case, index) => {
 
-      const test = () => Suggest(test_case, [ 'foo' ], 'bar');
+      const test = () => suggest(test_case, [ 'foo' ], 'bar');
 
       expect(test).to.throw(
         TypeError
@@ -43,7 +43,7 @@ describe('props-check/lib/suggest.js', () => {
   it('should throw a TypeError if the first argument is not a function with ' +
   'an arity of two', () => {
 
-    const test = () => Suggest((x) => x, [ 'foo' ], 'bar');
+    const test = () => suggest((x) => x, [ 'foo' ], 'bar');
     expect(test).to.throw(
       TypeError
       , 'Compare parameter must be a function with an arity of 2'
@@ -66,7 +66,7 @@ describe('props-check/lib/suggest.js', () => {
 
     test_cases.map((test_case, index) => {
 
-      const test = () => Suggest(comparator, test_case, 'bar');
+      const test = () => suggest(comparator, test_case, 'bar');
       expect(test).to.throw(
         TypeError
         , 'Possibilities parameter must be a non-empty array.'
@@ -80,7 +80,7 @@ describe('props-check/lib/suggest.js', () => {
   it('should throw a TypeError if the second argument is an empty array',
   () => {
     const comparator = (a, b) => a < b;
-    const test = () => Suggest(comparator, [], 'bar');
+    const test = () => suggest(comparator, [], 'bar');
 
     expect(test).to.throw(
       TypeError
@@ -95,8 +95,8 @@ describe('props-check/lib/suggest.js', () => {
     const compare       = (x, y) => x < y ? -1 : 1;
     const possibilities = [ 'foo', 'bar' ];
 
-    expect(Suggest(compare)).to.be.a('function');
-    expect(Suggest(compare)(possibilities)).to.be.a('function');
+    expect(suggest(compare)).to.be.a('function');
+    expect(suggest(compare)(possibilities)).to.be.a('function');
 
 
   });
@@ -107,7 +107,7 @@ describe('props-check/lib/suggest.js', () => {
     const possibilities = [ 'read', 'sanitize', 'validate', 'normalize' ];
     const target = 'santize';
     const expected = [ 'sanitize' ];
-    const actual = Suggest(DL, possibilities, target);
+    const actual = suggest(DL, possibilities, target);
 
     expect(actual).to.deep.eql(expected);
 

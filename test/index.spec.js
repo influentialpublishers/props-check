@@ -13,6 +13,13 @@ describe('prop-check/index.js', () => {
   });
 
 
+  it('should be a curried function', () => {
+
+    expect(PropCheck({})).to.be.a('function');
+
+  });
+
+
   it('should return a map with a list of possible corrections ' +
   'if the key is not in the spec', () => {
 
@@ -52,6 +59,7 @@ describe('prop-check/index.js', () => {
 
     });
 
+
     it('should be a function that return a function with an arity of 2', () => {
 
       expect(PropCheck.custom(() => {})).to.be.a('function');
@@ -59,12 +67,14 @@ describe('prop-check/index.js', () => {
 
     });
 
+
     it('should be a function that returns a curried function', () => {
 
       expect(PropCheck.custom(() => {})).to.be.a('function');
       expect(PropCheck.custom(() => {})({})).to.be.a('function');
 
     });
+
 
     it('should use the custom comparator and return a map with ' +
     'a list of possible corrections if the key is not in the spec', () => {
@@ -107,7 +117,75 @@ describe('prop-check/index.js', () => {
       expect(actual2.kiwi).to.deep.eql([ ]);
 
     });
-    
+
+  });
+
+
+  describe('::human', () => {
+
+    const spec = {
+      apple: 'Object'
+    , orange: 'Number'
+    , banana: 'Function'
+    , kiwi: '[Function]'
+    };
+
+    const good_test = {
+      apple: {}
+    , orange: 10
+    , banana: () => null
+    , kiwi: [ () => null ]
+    };
+
+    const bad_test = {
+      appel: {}
+    , orage: 10
+    , nbaana: () => null
+    , kiwi: [ () => null ]
+    };
+
+    it('should be a function with an arity of 2', () => {
+
+      expect(PropCheck.human).to.be.a('function');
+      expect(PropCheck.human.length).to.equal(2);
+
+    });
+
+
+    it('should be a curried function', () => {
+
+      expect(PropCheck.human({})).to.be.a('function');
+
+    });
+
+
+    it('should return null if all properties pass the check', () => {
+
+      const actual = PropCheck.human(spec, good_test);
+
+      expect(actual).to.be.null;
+
+    });
+
+
+    it('should return a string if 1 or more properties fail the check', () => {
+
+      const test = {
+        appel: {}
+      , orage: 10
+      , nbaana: () => null
+      , kiwi: [ () => null ]
+      };
+
+      const actual = PropCheck.human(spec, bad_test);
+
+      console.log(actual);
+
+      expect(actual).to.be.a('String');
+
+    });
+
+
   });
 
 });
