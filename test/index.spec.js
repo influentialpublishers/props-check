@@ -42,72 +42,72 @@ describe('prop-check/index.js', () => {
 
   });
 
-});
 
+  describe('::custom', () => {
 
-describe('(prop-check/index.js).custom', () => {
+    it('should be a function with an arity of 1', () => {
 
-  it('should be a function with an arity of 1', () => {
+      expect(PropCheck.custom).to.be.a('function');
+      expect(PropCheck.custom.length).to.eql(1);
 
-    expect(PropCheck.custom).to.be.a('function');
-    expect(PropCheck.custom.length).to.eql(1);
+    });
 
+    it('should be a function that return a function with an arity of 2', () => {
+
+      expect(PropCheck.custom(() => {})).to.be.a('function');
+      expect(PropCheck.custom(() => {}).length).to.eql(2);
+
+    });
+
+    it('should be a function that returns a curried function', () => {
+
+      expect(PropCheck.custom(() => {})).to.be.a('function');
+      expect(PropCheck.custom(() => {})({})).to.be.a('function');
+
+    });
+
+    it('should use the custom comparator and return a map with ' +
+    'a list of possible corrections if the key is not in the spec', () => {
+
+      const spec = {
+        apple: 'Function'
+      , orange: '[Function]'
+      , banana: '[Function]'
+      , kiwi: '[Function]'
+      };
+
+      const test = {
+        appel: () => null
+      , orage: [ () => null ]
+      , nbaana: [ () => null ]
+      , kiwi: [ () => null ]
+      };
+
+      const comparator1 = (a, b) => {
+        if (a === b) return 0
+        else return -1;
+      }
+
+      const comparator2 = (a, b) => {
+        if (a === b) return 0
+        else return 1;
+      }
+
+      const actual1 = PropCheck.custom(comparator1)(spec, test);
+      const actual2 = PropCheck.custom(comparator2)(spec, test);
+
+      expect(actual1.appel).to.deep.eql([ ]);
+      expect(actual1.orage).to.deep.eql([ ]);
+      expect(actual1.nbaana).to.deep.eql([ ]);
+      expect(actual1.kiwi).to.deep.eql([ ]);
+
+      expect(actual2.appel).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
+      expect(actual2.orage).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
+      expect(actual2.nbaana).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
+      expect(actual2.kiwi).to.deep.eql([ ]);
+
+    });
+    
   });
 
-  it('should be a function that return a function with an arity of 2', () => {
-
-    expect(PropCheck.custom(() => {})).to.be.a('function');
-    expect(PropCheck.custom(() => {}).length).to.eql(2);
-
-  });
-
-  it('should be a function that returns a curried function', () => {
-
-    expect(PropCheck.custom(() => {})).to.be.a('function');
-    expect(PropCheck.custom(() => {})({})).to.be.a('function');
-
-  });
-
-  it('should use the custom comparator and return a map with ' +
-  'a list of possible corrections if the key is not in the spec', () => {
-
-    const spec = {
-      apple: 'Function'
-    , orange: '[Function]'
-    , banana: '[Function]'
-    , kiwi: '[Function]'
-    };
-
-    const test = {
-      appel: () => null
-    , orage: [ () => null ]
-    , nbaana: [ () => null ]
-    , kiwi: [ () => null ]
-    };
-
-    const comparator1 = (a, b) => {
-      if (a === b) return 0
-      else return -1;
-    }
-
-    const comparator2 = (a, b) => {
-      if (a === b) return 0
-      else return 1;
-    }
-
-    const actual1 = PropCheck.custom(comparator1)(spec, test);
-    const actual2 = PropCheck.custom(comparator2)(spec, test);
-
-    expect(actual1.appel).to.deep.eql([ ]);
-    expect(actual1.orage).to.deep.eql([ ]);
-    expect(actual1.nbaana).to.deep.eql([ ]);
-    expect(actual1.kiwi).to.deep.eql([ ]);
-
-    expect(actual2.appel).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
-    expect(actual2.orage).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
-    expect(actual2.nbaana).to.deep.eql([ "apple", "orange", "banana", "kiwi" ]);
-    expect(actual2.kiwi).to.deep.eql([ ]);
-
-  });
-  
 });
