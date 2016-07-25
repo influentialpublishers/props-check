@@ -21,7 +21,9 @@ PropCheck.custom = (comparator) => _.curry((spec, target) =>
 );
 
 
-PropCheck.human = _.curryN(2, _.compose(human, PropCheck));
+PropCheck.human = _.curry((spec, target) => {
+  return human(spec, PropCheck(spec, target));
+});
 
 
 module.exports = PropCheck;
