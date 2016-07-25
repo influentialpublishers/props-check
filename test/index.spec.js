@@ -139,7 +139,23 @@ describe('prop-check/index.js', () => {
     , mango: true
     };
 
-    const bad_test = {
+    const bad_test1 = {
+      appel: {}
+    , orage: 10
+    , nbaana: () => null
+    , kiwi: [ () => null ]
+    };
+
+    const bad_test2 = { };
+
+    const bad_test3 = {
+      appel: {}
+    , orage: 10
+    , nbaana: () => null
+    , kiwi: [ () => null ]
+    };
+
+    const bad_test4 = {
       appel: {}
     , orage: 10
     , nbaana: () => null
@@ -179,11 +195,13 @@ describe('prop-check/index.js', () => {
       , kiwi: [ () => null ]
       };
 
-      const actual = PropCheck.human(spec, bad_test);
+      const actual1 = PropCheck.human(spec, bad_test1);
+      expect(actual1).to.be.a('String');
 
-      console.log(actual);
+      console.log(actual1);
 
-      expect(actual).to.be.a('String');
+      const actual2 = PropCheck.human(spec, bad_test2);
+      expect(actual2).to.be.a('String');
 
     });
 
