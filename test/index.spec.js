@@ -128,6 +128,7 @@ describe('prop-check/index.js', () => {
     , orange: 'Number'
     , banana: 'Function'
     , kiwi: '[Function]'
+    , mango: 'Boolean'
     };
 
     const good_test = {
@@ -135,6 +136,7 @@ describe('prop-check/index.js', () => {
     , orange: 10
     , banana: () => null
     , kiwi: [ () => null ]
+    , mango: true
     };
 
     const bad_test = {
