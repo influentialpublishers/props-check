@@ -148,19 +148,6 @@ describe('prop-check/index.js', () => {
 
     const bad_test2 = { };
 
-    const bad_test3 = {
-      appel: {}
-    , orage: 10
-    , nbaana: () => null
-    , kiwi: [ () => null ]
-    };
-
-    const bad_test4 = {
-      appel: {}
-    , orage: 10
-    , nbaana: () => null
-    , kiwi: [ () => null ]
-    };
 
     it('should be a function with an arity of 2', () => {
 
@@ -188,17 +175,8 @@ describe('prop-check/index.js', () => {
 
     it('should return a string if 1 or more properties fail the check', () => {
 
-      const test = {
-        appel: {}
-      , orage: 10
-      , nbaana: () => null
-      , kiwi: [ () => null ]
-      };
-
       const actual1 = PropCheck.human(spec, bad_test1);
       expect(actual1).to.be.a('String');
-
-      console.log(actual1);
 
       const actual2 = PropCheck.human(spec, bad_test2);
       expect(actual2).to.be.a('String');
