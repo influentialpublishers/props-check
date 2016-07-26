@@ -179,8 +179,6 @@ describe('prop-check/index.js', () => {
       const actual1 = PropCheck.human(spec, bad_test1);
       expect(actual1).to.be.a('String');
 
-      console.log(actual1);
-
       const actual2 = PropCheck.human(spec, bad_test2);
       expect(actual2).to.be.a('String');
 
