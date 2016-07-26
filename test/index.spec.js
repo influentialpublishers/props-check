@@ -147,8 +147,11 @@ describe('prop-check/index.js', () => {
     , watermelon: false
     };
 
-    const bad_test2 = { };
+    const bad_test2 = {
+      watermelon: false
+    };
 
+    const bad_test3 = { };
 
     it('should be a function with an arity of 2', () => {
 
@@ -181,6 +184,9 @@ describe('prop-check/index.js', () => {
 
       const actual2 = PropCheck.human(spec, bad_test2);
       expect(actual2).to.be.a('String');
+
+      const actual3 = PropCheck.human(spec, bad_test3);
+      expect(actual3).to.be.a('String');
 
     });
 
