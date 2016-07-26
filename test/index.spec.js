@@ -123,23 +123,6 @@ describe('prop-check/index.js', () => {
 
   describe('::human', () => {
 
-    const spec = {
-      apple: 'Object'
-    , orange: 'Number'
-    , banana: 'Function'
-    , kiwi: '[Function]'
-    , mango: 'Boolean'
-    };
-
-    const good_test = {
-      apple: {}
-    , orange: 10
-    , banana: () => null
-    , kiwi: [ () => null ]
-    , mango: true
-    };
-
-
     it('should be a function with an arity of 2', () => {
 
       expect(PropCheck.human).to.be.a('function');
@@ -150,47 +133,21 @@ describe('prop-check/index.js', () => {
 
     it('should be a curried function', () => {
 
+      expect(PropCheck.human).to.be.a('function');
       expect(PropCheck.human({})).to.be.a('function');
 
-    });
+    })
 
 
-    it('should return null if all properties pass the check', () => {
+    it('should return a string or null if all parameters are provided', () => {
 
-      const actual = PropCheck.human(spec, good_test);
+      const result1 = PropCheck.human({}, {});
+      expect(result1).to.be.null;
 
-      expect(actual).to.be.null;
-
-    });
-
-
-    it('should return a string if 1 or more properties fail the check', () => {
-
-      const bad_test1 = {
-        appel: {}
-      , orage: 10
-      , nbaana: () => null
-      , kiwi: [ () => null ]
-      , watermelon: false
-      };
-
-      const bad_test2 = {
-        watermelon: false
-      };
-
-      const bad_test3 = { };
-
-      const actual1 = PropCheck.human(spec, bad_test1);
-      expect(actual1).to.be.a('String');
-
-      const actual2 = PropCheck.human(spec, bad_test2);
-      expect(actual2).to.be.a('String');
-
-      const actual3 = PropCheck.human(spec, bad_test3);
-      expect(actual3).to.be.a('String');
+      const result2 = PropCheck.human({ apple: 'String' }, { appel: '' } );
+      expect(result2).to.be.a('String');
 
     });
-
 
   });
 
