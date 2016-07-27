@@ -64,7 +64,7 @@ describe('props-check/lib/human.js', () => {
 
     const actual3 = human({})(spec, PropCheck(spec, bad_test3));
     expect(actual3).to.be.a('String');
-console.log(actual1);
+
   });
 
 });
