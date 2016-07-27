@@ -21,12 +21,13 @@ PropCheck.custom = (comparator) => _.curry((spec, target) =>
 );
 
 
-PropCheck.customHuman = (custom_messages) => _.curry((spec, target) => {
-  return human(custom_messages)(spec, PropCheck(spec, target));
-});
+PropCheck.human = _.curry((spec, target) =>
+  human(spec, PropCheck(spec, target), null)
+);
 
-
-PropCheck.human = PropCheck.customHuman({});
+PropCheck.customHuman = (messages) => _.curry((spec, target) =>
+  human(spec, PropCheck(spec, target), messages)
+);
 
 
 module.exports = PropCheck;
