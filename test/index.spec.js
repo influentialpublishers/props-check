@@ -144,7 +144,39 @@ describe('prop-check/index.js', () => {
       const result1 = PropCheck.human({}, {});
       expect(result1).to.be.null;
 
-      const result2 = PropCheck.human({ apple: 'String' }, { appel: '' } );
+      const result2 = PropCheck.human({ apple: 'String' }, { appel: '' });
+      expect(result2).to.be.a('String');
+
+    });
+
+  });
+
+
+    describe('::customHuman', () => {
+
+    it('should be a function with an arity of 2', () => {
+
+      expect(PropCheck.customHuman(null)).to.be.a('function');
+      expect(PropCheck.customHuman(null).length).to.equal(2);
+
+    });
+
+
+    it('should be a curried function', () => {
+
+      expect(PropCheck.customHuman(null)).to.be.a('function');
+      expect(PropCheck.customHuman(null)({})).to.be.a('function');
+
+    })
+
+
+    it('should return a string or null if all parameters are provided', () => {
+
+      const result1 = PropCheck.customHuman(null)({}, {});
+      expect(result1).to.be.null;
+
+      const result2 =
+        PropCheck.customHuman(null)({ apple: 'String' }, { appel: '' });
       expect(result2).to.be.a('String');
 
     });
