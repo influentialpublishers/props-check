@@ -1,6 +1,6 @@
 {
   "name": "props-check",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Check your props and give a helpful error if you've mis-typed.",
   "main": "index.js",
   "scripts": {
