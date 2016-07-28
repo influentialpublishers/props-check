@@ -39,7 +39,7 @@ const test = {
 };
 
 
-const result = PropsChecks(spec, test);
+const result = PropsCheck(spec, test);
 ```
 
 result:
@@ -51,7 +51,7 @@ result:
   }
 ```
 
-`PropsChecks` returns `null` if spec and test have the exact same props.
+`PropsCheck` returns `null` if spec and test have the exact same props.
 
 ## `PropsCheck.custom`
 
@@ -68,7 +68,7 @@ const result = PropsCheck.custom(comparator)(spec, test);
 `PropsCheck.human` accepts the same arguments as PropsCheck but returns a more helpful error message.
 
 ```javascript
-const result = PropsChecks.human(spec, test);
+const result = PropsCheck.human(spec, test);
 ```
 
 result:
@@ -110,7 +110,7 @@ const customMessages = {
 , conclusion: [ "I suggest the following changes:", … ]
 };
 
-const result = PropsChecks.customHuman(customMessages)(spec, test);
+const result = PropsCheck.customHuman(customMessages)(spec, test);
 ```
 
 Custom messages will be used randomly if more than 1 message is provided in the list. If a property of the customMessages is misspelled or if a list is empty, default messages will be used instead.
