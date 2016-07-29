@@ -36,10 +36,11 @@ const test = {
 , santize: [ () => null ]
 , alvidate: [ () => null ]
 , normalize: [ () => null ]
+, format: [ () => null ]
 };
 
 
-const result = PropsChecks(spec, test);
+const result = PropsCheck(spec, test);
 ```
 
 result:
@@ -48,10 +49,11 @@ result:
   , santize: [ 'sanitize' ]
   , alvidate: [ 'validate' ]
   , normalize: []
+  , format: []
   }
 ```
 
-`PropsChecks` returns `null` if spec and test have the exact same props.
+`PropsCheck` returns `null` if spec and test have the exact same props.
 
 ## `PropsCheck.custom`
 
@@ -68,7 +70,7 @@ const result = PropsCheck.custom(comparator)(spec, test);
 `PropsCheck.human` accepts the same arguments as PropsCheck but returns a more helpful error message.
 
 ```javascript
-const result = PropsChecks.human(spec, test);
+const result = PropsCheck.human(spec, test);
 ```
 
 result:
@@ -96,6 +98,10 @@ result:
       raed <-> read
       santize <-> sanitize
       alvidate <-> validate
+
+    I have no idea what this mean:
+
+      { format: …, }
 ```
 
 ## `PropsCheck.customHuman`
@@ -108,9 +114,10 @@ const customMessages = {
 , unexpected: [ "Something is not right..", … ]
 , missing: [ "I'm looking for this:", … ]
 , conclusion: [ "I suggest the following changes:", … ]
+, clueless: [ "I have no idea what these are:", … ]
 };
 
-const result = PropsChecks.customHuman(customMessages)(spec, test);
+const result = PropsCheck.customHuman(customMessages)(spec, test);
 ```
 
 Custom messages will be used randomly if more than 1 message is provided in the list. If a property of the customMessages is misspelled or if a list is empty, default messages will be used instead.
