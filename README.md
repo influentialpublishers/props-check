@@ -36,6 +36,7 @@ const test = {
 , santize: [ () => null ]
 , alvidate: [ () => null ]
 , normalize: [ () => null ]
+, format: [ () => null ]
 };
 
 
@@ -48,6 +49,7 @@ result:
   , santize: [ 'sanitize' ]
   , alvidate: [ 'validate' ]
   , normalize: []
+  , format: []
   }
 ```
 
@@ -96,6 +98,10 @@ result:
       raed <-> read
       santize <-> sanitize
       alvidate <-> validate
+
+    I have no idea what this mean:
+
+      { format: …, }
 ```
 
 ## `PropsCheck.customHuman`
@@ -108,6 +114,7 @@ const customMessages = {
 , unexpected: [ "Something is not right..", … ]
 , missing: [ "I'm looking for this:", … ]
 , conclusion: [ "I suggest the following changes:", … ]
+, clueless: [ "I have no idea what these are:", … ]
 };
 
 const result = PropsCheck.customHuman(customMessages)(spec, test);
