@@ -8,7 +8,7 @@ const ERROR_MESSAGE_GIVEN = "__GIVEN";
 const ERROR_MESSAGE_UNEXPECTED = "__UNEXPECTED";
 const ERROR_MESSAGE_MISSING = "__MISSING";
 const ERROR_MESSAGE_CONCLUSION = "__CONCLUSION";
-const ERROR_MESSAGE_EXTRA = "__EXTRA";
+const ERROR_MESSAGE_CLUELESS = "__CLUELESS";
 
 
 describe('props-check/lib/human.js', () => {
@@ -35,7 +35,7 @@ describe('props-check/lib/human.js', () => {
   , unexpected: [ ERROR_MESSAGE_UNEXPECTED ]
   , missing: [ ERROR_MESSAGE_MISSING ]
   , conclusion: [ ERROR_MESSAGE_CONCLUSION ]
-  , extra: [ ERROR_MESSAGE_EXTRA ]
+  , clueless: [ ERROR_MESSAGE_CLUELESS ]
   };
 
 
@@ -100,13 +100,13 @@ describe('props-check/lib/human.js', () => {
     expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_UNEXPECTED));
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_MISSING));
     expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_CONCLUSION));
-    expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_EXTRA));
+    expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_CLUELESS));
 
   });
 
 
   it('should return a string that contains all sections but ' +
-  ERROR_MESSAGE_EXTRA, () => {
+  ERROR_MESSAGE_CLUELESS, () => {
 
     const spec = {
       apple: ''
@@ -124,7 +124,7 @@ describe('props-check/lib/human.js', () => {
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_UNEXPECTED));
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_MISSING));
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_CONCLUSION));
-    expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_EXTRA));
+    expect(actual).to.not.match(new RegExp(ERROR_MESSAGE_CLUELESS));
 
   });
 
@@ -148,7 +148,7 @@ describe('props-check/lib/human.js', () => {
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_UNEXPECTED));
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_MISSING));
     expect(actual).to.match(new RegExp(ERROR_MESSAGE_CONCLUSION));
-    expect(actual).to.match(new RegExp(ERROR_MESSAGE_EXTRA));
+    expect(actual).to.match(new RegExp(ERROR_MESSAGE_CLUELESS));
 
   });
 
